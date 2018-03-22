@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 消费方,用于计算依赖关系,名称与提供方不一样 -->
+	<dubbo:application name="demo-consumer" />
+
+	<!-- 使用zookeeper注册中心暴露所提供服务的地址,也可用redis作为注册中心 -->
+	<dubbo:registry protocol="zookeeper" 
+	address="192.168.50.12:2181,192.168.50.13:2181,192.168.50.14:2181" />
+	<!-- 生成远程服务代理,让其像使用本地bean一样使用demoService check检查级联依赖默认true 
+		com.dubbo.provider.DemoService必须跟暴露的服务包名一致	-->
+	<dubbo:reference id="demoConsumerService" check="false" 
+		interface="com.dubbo.provider.DemoService"/>
+
+</beans>

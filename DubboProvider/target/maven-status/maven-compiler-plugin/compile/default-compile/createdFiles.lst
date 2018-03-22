@@ -1,0 +1,3 @@
+com\dubbo\provider\impl\User.class
+com\dubbo\provider\DemoService.class
+com\dubbo\provider\impl\DemoServiceImpl.class
